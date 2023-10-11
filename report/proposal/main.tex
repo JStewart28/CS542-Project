@@ -1,1 +1,65 @@
-proposal
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{todonotes}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\newcommand\todoJason[1]{\todo[author=Jason,color=yellow,inline]{#1}}
+\newcommand\todoMichael[1]{\todo[author=Michael,color=green,inline]{#1}}
+\newcommand\todoChris[1]{\todo[author=Chris,color=orange,inline]{#1}}
+
+\title{TODO}
+\author{Jason Stewart\\
+\textit{jastewart@unm.edu} 
+\and
+Michael Servilla\\
+\textit{chico@unm.edu}
+\and
+Christopher Leap\\
+\textit{\todoChris{email}}
+\date{\today}
+}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+example cite: \cite{cfb_db}
+
+
+\newpage
+\nocite{*}
+\bibliographystyle{acm}
+\bibliography{references}
+
+\end{document}
+
+Please upload a 2 page, single space, PDF document containing the following information:
+- Proposal title
+- Team members
+Sections:
+Introduction. Describe what is the problem that you want to address, why is it important and why it qualifies as a Big Data problem
+Data: describe the data that you will use, its source(s), and what is your plan to secure the data in a timely manner. Use at least two data sources. 
+Methodology: explain in broad terms the approach or approaches you may consider to solve your problem. This section does not need to be very accurate at this point, you can figure out other approaches as the course continues, but I just want some ideas. 
+Contingency plan: if everything fails, what is your plan B? again, it does not need to be accurate or flushed out, I just want to see that you are considering all the angles
+
+
+
+
+
+
+
+
+\todoBoth{Poke around at databases so we can get data}
+\todoMark{ETL Composite DB}
+\todoJason{fill out proposed metrics by Friday}
+
+
+
+
+We can pull this data out of the pro database, but it will require writing good queries because it's not readily available to us.
+
+
+\missingfigure{put some graphs here}
+
+

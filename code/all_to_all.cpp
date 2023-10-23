@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <iostream>
 
-const int DATA_SIZE = 512;
+const int DATA_SIZE = 4096;
 
 int main(int argc, char **argv)
 {
@@ -13,7 +13,7 @@ int main(int argc, char **argv)
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
     MPI_Comm_size(MPI_COMM_WORLD, &num_procs);
 
-    char send_data[DATA_SIZE];
+    char *send_data = new char[DATA_SIZE];
     for (int i = 0; i < DATA_SIZE; i++)
     {
         send_data[i] = 1; 
@@ -41,7 +41,7 @@ int main(int argc, char **argv)
                   << total_time / runs << " seconds." << std::endl;
     }
 
-    delete[] recv_data;
+    delete[] recv_data, send_data;
 
     MPI_Finalize();
     return 0;

@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/home/sin_nombre/cs542/CS542-Project",
-      "program": "/home/sin_nombre/cs542/CS542-Project/build/Debug/outDebug",
+      "cwd": "/home/michaelservilla/cs542/CS542-Project",
+      "program": "/home/michaelservilla/cs542/CS542-Project/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

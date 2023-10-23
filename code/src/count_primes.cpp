@@ -32,9 +32,8 @@ int main(int argc, char **argv)
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
     MPI_Comm_size(MPI_COMM_WORLD, &num_procs);
 
-    int range_per_process = 1000000 / num_procs;
-    int start = rank * range_per_process;
-    int end = (rank + 1) * range_per_process;
+    int start = 0;
+    int end = 1000000;
 
     double total_time = 0.0;
     int runs = 1000;
@@ -44,7 +43,7 @@ int main(int argc, char **argv)
         int local_count = 0;
 
         MPI_Barrier(MPI_COMM_WORLD);
-        double start_time = MPI_Wtime();
+        start_time = MPI_Wtime();
 
         for (int i = start; i < end; i++)
         {
@@ -57,7 +56,7 @@ int main(int argc, char **argv)
         int global_count[num_procs];
         MPI_Gather(&local_count, 1, MPI_INT, global_count, 1, MPI_INT, 0, MPI_COMM_WORLD);
 
-        double end_time = MPI_Wtime();
+        end_time = MPI_Wtime();
         total_time += (end_time - start_time);
     }
 

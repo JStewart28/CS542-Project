@@ -3,7 +3,7 @@
 
 #include "mpi.h"
 
-const int DATA_SIZE = 4096;
+const int DATA_SIZE = 16000;
 
 int main(int argc, char **argv)
 {
@@ -42,7 +42,8 @@ int main(int argc, char **argv)
                   << total_time / runs << " seconds." << std::endl;
     }
 
-    delete[] recv_data, send_data;
+    delete[] recv_data;
+    delete[] send_data;
 
     MPI_Finalize();
     return 0;

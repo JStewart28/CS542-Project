@@ -5,4 +5,4 @@
 *.dylib
 *.json
 *.out
-*.vscode
+.vscode/

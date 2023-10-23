@@ -1,6 +1,7 @@
-#include <mpi.h>
 #include <stdio.h>
 #include <iostream>
+
+#include "mpi.h"
 
 const int DATA_SIZE = 4096;
 

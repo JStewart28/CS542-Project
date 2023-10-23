@@ -1,6 +1,7 @@
 #include <iostream>
-#include <mpi.h>
 #include <cmath>
+
+#include "mpi.h"
 
 int is_prime(int n)
 {

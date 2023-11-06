@@ -3,7 +3,7 @@
 
 #include "mpi.h"
 
-const int DATA_SIZE = 16000;
+const int DATA_SIZE = 4196;
 
 int main(int argc, char **argv)
 {

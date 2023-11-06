@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <iostream>
+#include <unistd.h>
 
 #include "mpi.h"
 
@@ -38,6 +39,10 @@ int main(int argc, char **argv)
 
     if (rank == 0)
     {
+        char hostname[1024];
+        hostname[1023] = '\0';
+        gethostname(hostname, 1023);
+        printf("hostname: %s\n", hostname);
         std::cout << "Average All-to-all time over " << runs << " runs: "
                   << total_time / runs << " seconds." << std::endl;
     }

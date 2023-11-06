@@ -15,6 +15,17 @@ int main(int argc, char **argv)
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
     MPI_Comm_size(MPI_COMM_WORLD, &num_procs);
 
+    int is_oversubscribed = 0;
+    if (argc != 2) {
+        printf("Please pass oversubscrtibe flag of 1 or 0\n");
+        MPI_Finalize();
+        return 0;
+    }
+    if (atoi(argv[1]) == 1) {
+        is_oversubscribed = 1;
+    }
+
+
     char *send_data = new char[DATA_SIZE];
     for (int i = 0; i < DATA_SIZE; i++)
     {
@@ -43,6 +54,7 @@ int main(int argc, char **argv)
         hostname[1023] = '\0';
         gethostname(hostname, 1023);
         printf("hostname: %s\n", hostname);
+        printf("OS: %d\n", is_oversubscribed);
         std::cout << "Average All-to-all time over " << runs << " runs: "
                   << total_time / runs << " seconds." << std::endl;
     }

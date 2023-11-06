@@ -33,7 +33,7 @@ int main(int argc, char **argv)
     MPI_Comm_size(MPI_COMM_WORLD, &num_procs);
 
     int start = 0;
-    int end = 50000;
+    int end = 70000;
 
     double total_time = 0.0;
     int runs = 1000;

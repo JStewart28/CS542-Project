@@ -13,7 +13,7 @@ echo "all_to_all 8"
 mpirun -n 8 all_to_all 0 >> run_Aureolin.out
 echo "all_to_all 16"
 mpirun -n 16 --oversubscribe all_to_all 1 >> run_Aureolin.out
-echo "all_to_all 32"
+echo "all_to_all 24"
 mpirun -n 24 --oversubscribe all_to_all 1 >> run_Aureolin.out
 echo "all_to_all 64"
 mpirun -n 32 --oversubscribe all_to_all 1 >> run_Aureolin.out

@@ -46,7 +46,7 @@ int main(int argc, char **argv)
     int end = 10000;
 
     // Number of times to run 'runs' runs to calculate the std dev
-    int num_runs = 16;
+    int num_runs = 8;
     int sample_size = 100;
     int runs = 1000;
     double* avg_times = new double[sample_size];

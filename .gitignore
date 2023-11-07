@@ -4,7 +4,6 @@
 *.so
 *.dylib
 *.json
-*.out
 
 # Ignore IDE files
 .vscode/

@@ -14,7 +14,7 @@ add_definitions(-DOMPI_SKIP_MPICXX)
 include_directories(${CMAKE_SOURCE_DIR})
 
 add_executable(all_to_all src/all_to_all.cpp)
-target_link_libraries(all_to_all PUBLIC MPI::MPI_CXX)
+target_link_libraries(all_to_all PUBLIC MPI::MPI_CXX m)
 
 add_executable(count_primes src/count_primes.cpp)
-target_link_libraries(count_primes PUBLIC MPI::MPI_CXX)
+target_link_libraries(count_primes PUBLIC MPI::MPI_CXX m)

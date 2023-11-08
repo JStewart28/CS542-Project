@@ -16,21 +16,22 @@ then
 fi
 echo "Running with at most $UBOUND tasks"
 
+# get hostname
+NAME=$(hostname)
+
 # cd into the runscripts directory
 cd $(dirname "$0")
 
 # build binaries
-cd ..
-mkdir build
-cd build
+BDIR="../build_$NAME" # Build directory, hostname is included so each cs machine builds a different binary
+mkdir $BDIR
+cd $BDIR
 cmake ..
 make
 cd ../runscripts/
 
-NAME=$(hostname)
 NCPU=$(nproc)
 OUTF="../../../results/run_$NAME.out" # Out file
-BDIR="../build" # Build directory
 
 echo "Please close all other programs before running"
 echo "Running on $NAME with $NCPU CPUs"
@@ -39,6 +40,10 @@ echo "--------------------------------------------------------------------------
 
 for NPROCS in 1 2 4 6 8 16 32 64 128
 do
+	if [ $NPROCS -gt $UBOUND ]
+	then
+		break
+	fi
 	if [ $NPROCS -le $NCPU ]
 	then
 		echo "all_to_all $NPROCS"

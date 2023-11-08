@@ -10,6 +10,7 @@
 
 # Ignore build
 build
+build*/
 
 # Ignore swap files
 *.swp

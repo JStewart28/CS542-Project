@@ -1,5 +1,22 @@
 #!/bin/bash
 
+# run_desktop
+#
+# This script is meant to run our experiments on non-supercomputers.
+# If you run this script without passing any command-line arguments,
+# e.g. ./run_desktop.sh
+# then it will oversubscribe up to 128 tasks. If you want to put an upper-
+# bound on how many tasks it will oversubscribe, pass the upper-bound as the
+# first (and only) command-line argument.
+# e.g. to run at most 64 tasks: ./run_desktop.sh 64
+UBOUND=128
+if [ $# -eq 1 ]
+then
+	UBOUND=$1
+fi
+echo "Running with at most $UBOUND tasks"
+exit 0
+
 # cd into the runscripts directory
 cd $(dirname "$0")
 
@@ -21,7 +38,7 @@ echo "Running on $NAME with $NCPU CPUs"
 echo "Writing results to $OUTF"
 echo "--------------------------------------------------------------------------------"
 
-for NPROCS in 1 2 #4 8 16 32 64 128
+for NPROCS in 1 2 4 6 8 16 32 64 128
 do
 	if [ $NPROCS -le $NCPU ]
 	then

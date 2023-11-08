@@ -29,7 +29,7 @@ cd ../runscripts/
 
 NAME=$(hostname)
 NCPU=$(nproc)
-OUTF="../../results/run_$NAME.out" # Out file
+OUTF="../../../results/run_$NAME.out" # Out file
 BDIR="../build" # Build directory
 
 echo "Please close all other programs before running"

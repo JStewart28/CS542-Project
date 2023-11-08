@@ -15,7 +15,7 @@ echo "all_to_all 16"
 mpirun -n 16 --oversubscribe all_to_all 1 >> run_Aureolin.out
 echo "all_to_all 24"
 mpirun -n 24 --oversubscribe all_to_all 1 >> run_Aureolin.out
-echo "all_to_all 64"
+echo "all_to_all 32"
 mpirun -n 32 --oversubscribe all_to_all 1 >> run_Aureolin.out
 # More processes than this will cause an out of memory error
 

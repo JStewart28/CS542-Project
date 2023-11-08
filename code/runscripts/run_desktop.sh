@@ -15,7 +15,6 @@ then
 	UBOUND=$1
 fi
 echo "Running with at most $UBOUND tasks"
-exit 0
 
 # cd into the runscripts directory
 cd $(dirname "$0")

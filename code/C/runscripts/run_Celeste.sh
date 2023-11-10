@@ -28,7 +28,7 @@ mpirun -n 4 count_primes 0 >> run_Celeste.out
 echo "count_primes 6"
 mpirun -n 6 count_primes 0 >> run_Celeste.out
 echo "count_primes 8"
-mpirun -n 8 count_primes --oversubscribe 1 >> run_Celeste.out
+mpirun -n 8 --oversubscribe count_primes 1 >> run_Celeste.out
 echo "count_primes 16"
 mpirun -n 16 --oversubscribe count_primes 1 >> run_Celeste.out
 echo "count_primes 24"

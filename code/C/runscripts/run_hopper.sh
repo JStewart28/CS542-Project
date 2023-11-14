@@ -8,7 +8,7 @@
 #SBATCH --nodes 1
 #SBATCH --cpus-per-task 1
 #SBATCH --ntasks-per-node 16
-#SBATCH --partition pbatch
+#SBATCH --partition general
 #SBATCH --exclusive
 #SBATCH --time 0:01:00
 #SBATCH --distribution block:block

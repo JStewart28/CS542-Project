@@ -8,7 +8,7 @@
 #SBATCH --partition debug
 #SBATCH --time 00:01:00
 
-spack load openmpi+legacylaunchers
+spack load openmpi/nb2qima72b5usivgbcdbkwn5ivmcwlxk
 mpirun -n 1 all_to_all 0
 mpirun -n 2 all_to_all 0
 mpirun -n 4 all_to_all 0

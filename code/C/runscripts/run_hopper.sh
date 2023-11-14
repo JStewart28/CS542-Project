@@ -1,12 +1,17 @@
 #!/bin/bash
-#SBATCH --job-name mpi
+#SBATCH --job-name benchmarks
 #SBATCH --mail-user jastewart@unm.edu
 #SBATCH --mail-type FAIL,TIME_LIMIT
-#SBATCH --output mpi.out
-#SBATCH --error mpi.err
+#SBATCH --output run_hopper.out
+#SBATCH --error run_hopper.err
+#SBATCH --ntasks 16
 #SBATCH --nodes 1
-#SBATCH --partition debug
-#SBATCH --time 00:01:00
+#SBATCH --cpus-per-task 1
+#SBATCH --ntasks-per-node 16
+#SBATCH --partition pbatch
+#SBATCH --exclusive
+#SBATCH --time 0:01:00
+#SBATCH --distribution block:block
 
 spack load openmpi/nb2qima72b5usivgbcdbkwn5ivmcwlxk
 mpirun -n 1 all_to_all 0

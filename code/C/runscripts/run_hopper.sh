@@ -10,7 +10,7 @@
 #SBATCH --ntasks-per-node 16
 #SBATCH --partition general
 #SBATCH --exclusive
-#SBATCH --time 0:01:00
+#SBATCH --time 4:00:00
 #SBATCH --distribution block:block
 
 spack load openmpi/nb2qima72b5usivgbcdbkwn5ivmcwlxk

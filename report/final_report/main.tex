@@ -25,12 +25,10 @@ Christopher Leap\\
 
 \maketitle
 \section{Current progress}
-At the time of this report, we have written and run our all\_to\_all and count\_primes benchmarks on seven different machines. These machines are a combination of our personal computers and the CS machines at the University of New Mexico (UNM). We ran each benchmark using 1, 2, 4, 6, 8, 16, 32, 64, and 128 processes. For each run, we calculated the average and standard deviation of the amount of time to took to run one iteration of MPI\_Alltoall with a message size of 4196 bytes or one iteration of each process counting prime numbers between 0 and 10000 and performing a single MPI\_Allgather at the end. The GitHub repository for our project is included in our References section \cite{repo}.
+At the time of this report, we have written and run our all\_to\_all and count\_primes benchmarks on seven different machines. These machines are a combination of our personal computers and the CS machines at the University of New Mexico (UNM). We ran each benchmark using 1, 2, 4, 6, 8, 16, 32, 64, and 128 processes. For each run, we calculated the average and standard deviation of the amount of time to took to run one iteration of MPI\_Alltoall with a message size of 4196 bytes or one iteration of each process counting prime numbers between 0 and 10000 and performing a single MPI\_Allgather at the end. The GitHub repository for our project is included in our References section \cite{repo}. Preliminary results are included at the end of this report.
 
 \section{Challenges}
 We encountered unexpected difficulty running oversubscribed jobs on the CARC supercomputers. We have found a workaround to let us oversubscribe CARC nodes but creating this method delayed our results from CARC systems.
-
-\section{Preliminary Results}
 
 \section{Future Work}
 The following work remains to be completed:
@@ -50,6 +48,64 @@ The following work remains to be completed:
 \end{enumerate}
 
 \printbibliography
+
+\section{Preliminary Results}
+
+We ran the ``all\_to\_all" and ``count\_primes" benchmarks for each of the computers. We ran each benchmark 800 times. For Figures 1 through 4, each line corresponds to the mean across the 800 runs with the shaded area corresponding to one standard deviation either side of the mean. Figure \ref{fig:all_to_all} and Figure \ref{fig:count_primes} show the results of the benchmarks using the timings directly. 
+
+For Figure \ref{fig:all_to_all_normalized} and Figure \ref{fig:count_primes_normalized}, we attempt to ``normalize" the results by multiplying each benchmark timing (seconds per benchmark) by the computer's clock speed (cycles per second) to get the timings in cycles per benchmark. 
+
+In Figure \ref{fig:all_to_all_scaled} and Figure \ref{fig:count_primes_scaled}, we compare each computer's performance using a scaled metric - we multiply each benchmark time by the number of processes used and divide by the total number of cpu cores on the computer. 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/draft/all_to_all.pdf}
+    \caption{}
+    \label{fig:all_to_all}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/draft/count_primes.pdf}
+    \caption{Caption}
+    \label{fig:count_primes}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/draft/all_to_all_normalized.pdf}
+    \caption{Caption}
+    \label{fig:all_to_all_normalized}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/draft/count_primes_normalized.pdf}
+    \caption{Caption}
+    \label{fig:count_primes_normalized}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/draft/all_to_all_scaled.pdf}
+    \caption{Caption}
+    \label{fig:all_to_all_scaled}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/draft/count_primes_scaled.pdf}
+    \caption{Caption}
+    \label{fig:count_primes_scaled}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/draft/correlation.pdf}
+    \caption{Caption}
+    \label{fig:correlation}
+\end{figure}
+
 
 \end{document}
 

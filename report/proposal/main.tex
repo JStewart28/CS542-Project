@@ -2,12 +2,14 @@
 \usepackage{graphicx} % Required for inserting images
 \usepackage{todonotes}
 \usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{biblatex}
+\addbibresource{references.bib}
 
 \newcommand\todoJason[1]{\todo[author=Jason,color=yellow,inline]{#1}}
 \newcommand\todoMichael[1]{\todo[author=Michael,color=green,inline]{#1}}
 \newcommand\todoChris[1]{\todo[author=Chris,color=orange,inline]{#1}}
 
-\title{TODO}
+\title{How Super are Super Computers?}
 \author{Jason Stewart\\
 \textit{jastewart@unm.edu} 
 \and
@@ -15,7 +17,7 @@ Michael Servilla\\
 \textit{chico@unm.edu}
 \and
 Christopher Leap\\
-\textit{\todoChris{email}}
+\textit{cleap@unm.edu}
 \date{\today}
 }
 
@@ -23,18 +25,31 @@ Christopher Leap\\
 
 \maketitle
 
-\section{Introduction}
-Question: How does the compute and communication power of personal laptops compare to that of supercomputers? In theory, supercomputers are just a bunch of normal computers connected together by a fast network. Hypothesis: We think the times of these benchmarks on a single processor should be comparable between supercomputers and our laptops. What we are doing:
-\begin{itemize}
-    \item Get some low-memory primarily compute-based and communication-based benchmarks (Does Dr. Bienz have any?)
-    \item Run these benchmarks on a single node on different supercomputers and on our personal laptops.
-    \item Do these benchmarks perform better on the supercomputers or our laptops, and does this make sense given the processor?
-    \item  What if we oversubscribe a faster processor? Will our benchmarks run faster on an oversubscribed faster processor or a slower, not-oversubscribed processor?
-    \item What if we run our benchmarks with one process per node so they have to communicate over the network? How does this compare to speeds analyzed previously? Are laptops faster?
-\end{itemize}
+\section{Proposal}
+\subsection{Question}
+How does the compute and communication power of personal laptops compare to that of supercomputers? The motivation for this question is because in theory, supercomputers are just a collection of "normal" computers connected together by a fast network. 
+\subsection{Hypothesis}
 
-\todoMichael{Do you have anything to add to our methods, question, or hypothesis?}
-\todoChris{Do you have anything to add to our methods, question, or hypothesis?}
+We hypothesize that:
+\begin{enumerate}
+    \item The distributions of our benchmark times on a single processor with multiple cores should be equivalent between supercomputers and our laptops, when scaled with the number of processors.
+    \item The distribution of benchmark times for laptops should be lower (faster) than the times for a supercomputer using one process per node and multiple processes.
+    \item When oversubscribing processors, the distribution of results will be equivalent between the supercomputers and our laptops when scaled per processor.
+    \item Compiling our benchmarks using different implementations of MPI (e.g. OpenMPI, MPICH, etc.) will result in statistically-significantly different results, which will vary by which system we are running on.
+    \item In cases where we expect the performance between supercomputers and laptops to be equivalent, we will see that the processors' clock speed will be a better predictor of benchmark performance than whether or not the benchmark was run on a supercomputer.
+\end{enumerate}
+
+\subsection{Methods}
+\begin{enumerate}
+    \item Code a low-compute, network intensive program by performing an MPI All-to-all operation amongst many processes. Code a high compute, low communication method by counting prime numbers from zero to one million, splitting the work amongst the number of processes and then performing an MPI Gather. Evaluate the computational performance by measuring time-to-completion on various systems.
+    \item Run these benchmarks on a single node on different supercomputers, on multiple nodes with one process per node, and on our personal laptops.
+    \item We will test for inequality of distributions using t-tests \cite{ttest}, and equality of distributions using the "two one-sided t-tests" (TOST) procedure \cite{tost}.
+\end{enumerate}
+
+\printbibliography
+
+\end{document}
+
 
 example cite: \cite{cfb_db}
 
@@ -44,7 +59,7 @@ example cite: \cite{cfb_db}
 \bibliographystyle{acm}
 \bibliography{references}
 
-\end{document}
+
 
 Please upload a 2 page, single space, PDF document containing the following information:
 - Proposal title

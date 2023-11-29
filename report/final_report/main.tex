@@ -4,6 +4,8 @@
 \usepackage[colorlinks=true, allcolors=blue]{hyperref}
 \usepackage{biblatex}
 \usepackage{multirow}
+\usepackage{caption}
+\usepackage{subcaption}
 \addbibresource{references.bib}
 
 \newcommand\todoJason[1]{\todo[author=Jason,color=yellow,inline]{#1}}
@@ -29,7 +31,7 @@ Christopher Leap\\
 \todo{Finish report writing by Wed Nov 29}
 \todoJason{Proofread report and make presentation slides}
 \section{Introduction}
-General perceptions suggest that the computers in high-performance computing (HPC) centers are faster and more powerful than the commodity computers we use outside of these environments. Beyond considering the network or clustering capabilities of HPC centers, our objective is to evaluate the true extent of these supercomputers' capabilities. We aim to compare the performance of several computers within an HPC center with that of business-grade computers located outside of an HPC center, as well as with commodity computers typically owned by individuals (e.g., laptops and desktop personal computers). We will conduct two types of benchmark tests: one focusing on low-compute network-intensive tasks and the other concentrating on high-compute tasks with minimal reliance on networking. Utilizing these benchmark tests, we will employ 'time to completion' as a proxy for performance and compare the results across different computer types.
+General perceptions suggest that the computers in high-performance computing (HPC) centers are faster and more powerful than the commodity computers we use outside of these environments. Beyond considering the network or clustering capabilities of HPC centers, our objective is to evaluate the true extent of these supercomputers' capabilities. We aim to compare the performance of several computers within an HPC center with that of business-grade computers located outside of an HPC center, as well as with commodity computers typically owned by individuals (e.g., laptops and desktop personal computers). We will conduct two types of benchmark tests: one focusing on low-compute network-intensive tasks and the other concentrating on high-compute tasks with minimal reliance on networking. Utilizing these benchmark tests, we will employ `time to completion' as a proxy for performance and compare the results across different computer types.
 
 \section{Methods}
 
@@ -71,66 +73,84 @@ Yucca & Intel(R) Core(TM) i9-10885H & 16 & 8 & 2400 \\
 \section{Results}
 \todoChris{}
 
-We ran the ``all\_to\_all" and ``count\_primes" benchmarks for each of the computers. Each benchmark repeats 1000 times consecutively, which we time and divide by 1000 to get the time for one benchmark iteration. We repeat this process 800 times. For Figures 1 through 4, each line corresponds to the mean across the 800 runs with the shaded area corresponding to one standard deviation either side of the mean. Figure \ref{fig:all_to_all} and Figure \ref{fig:count_primes} show the results of the benchmarks using the timings directly. 
+We ran the ``all\_to\_all" and ``count\_primes" benchmarks for each of the computers. Each benchmark repeats 1000 times consecutively, which we time and divide by 1000 to get the time for one benchmark iteration. We repeat this process 800 times. For Figure \ref{fig:direct} and , each line corresponds to the mean across the 800 runs with the shaded area corresponding to one standard deviation either side of the mean. Figure \ref{fig:direct} shows the results of the benchmarks using the timings directly. 
 
-For Figure \ref{fig:all_to_all_normalized} and Figure \ref{fig:count_primes_normalized}, we attempt to ``normalize" the results by multiplying each benchmark timing (seconds per benchmark) by the computer's clock speed (cycles per second) to get the timings in cycles per benchmark. 
+For Figure \ref{fig:normalized}, we attempt to ``normalize" the results by multiplying each benchmark timing (seconds per benchmark) by the computer's clock speed (cycles per second) to get the timings in cycles per benchmark. 
 
-In Figure \ref{fig:all_to_all_scaled} and Figure \ref{fig:count_primes_scaled}, we compare each computer's performance using a scaled metric - we multiply each benchmark time by the number of processes used and divide by the total number of cpu cores on the computer. 
+In Figure \ref{fig:scaled}, we compare each computer's performance using a scaled metric - we multiply each benchmark time by the number of processes used and divide by the total number of cpu cores on the computer. 
 
 Figure \ref{fig:correlation} shows the correlation between cpu clock speed and the seconds per benchmark across the different sizes of benchmark runs. Figure \ref{fig:xcorrelation} shows the cross correlation for different variables in the benchmark runs.
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.8\textwidth]{figures/final/all_to_all.pdf}
-    \caption{The results of the ``all\_to\_all" benchmarks across computers. Each line is the mean benchmark time across 800 repetitions with one standard deviation either side of the mean shaded in.}
-    \label{fig:all_to_all}
+    \begin{subfigure}[b]{0.49\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{figures/final/all_to_all.pdf}
+         \caption{The results of ``all\_to\_all"}
+         \label{fig:all_to_all}
+     \end{subfigure}
+     \hfill
+     \begin{subfigure}[b]{0.49\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{figures/final/count_primes.pdf}
+         \caption{The results of ``count\_primes"}
+         \label{fig:count_primes}
+     \end{subfigure}
+     \hfill
+    \caption{The benchmark results across computers. Each line is the mean benchmark time across 800 repetitions with one standard deviation either side of the mean shaded in. The red x's denote we ran using more tasks than the number of CPU cores available. }
+    \label{fig:direct}
 \end{figure}
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.8\textwidth]{figures/final/count_primes.pdf}
-    \caption{The results of the ``count\_primes" benchmarks across computers. Each line is the mean benchmark time across 800 repetitions with one standard deviation either side of the mean shaded in.}
-    \label{fig:count_primes}
+    \begin{subfigure}[b]{0.49\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{figures/final/all_to_all_normalized.pdf}
+         \caption{The results of ``all\_to\_all"}
+         \label{fig:all_to_all}
+     \end{subfigure}
+     \hfill
+     \begin{subfigure}[b]{0.49\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{figures/final/count_primes_normalized.pdf}
+         \caption{The results of ``count\_primes"}
+         \label{fig:count_primes}
+     \end{subfigure}
+     \hfill
+    \caption{The benchmark results across computers. Each line is the ``normalized" mean benchmark result in cycles per benchmark across 800 repetitions with one standard deviation either side of the mean shaded in. The red x's denote we ran using more tasks than the number of CPU cores available. }
+    \label{fig:normalized}
 \end{figure}
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.8\textwidth]{figures/final/all_to_all_normalized.pdf}
-    \caption{The results of the ``all\_to\_all" benchmarks across computers. Each line is the ``normalized" mean benchmark result in cycles per benchmark across 800 repetitions with one standard deviation either side of the mean shaded in. }
-    \label{fig:all_to_all_normalized}
+    \begin{subfigure}[b]{0.49\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{figures/final/all_to_all_scaled.pdf}
+         \caption{The results of ``all\_to\_all"}
+         \label{fig:all_to_all}
+     \end{subfigure}
+     \hfill
+     \begin{subfigure}[b]{0.49\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{figures/final/count_primes_scaled.pdf}
+         \caption{The results of ``count\_primes"}
+         \label{fig:normalized}
+     \end{subfigure}
+     \hfill
+    \caption{The ``scaled" mean benchmark results. }
+    \label{fig:scaled}
 \end{figure}
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.8\textwidth]{figures/final/count_primes_normalized.pdf}
-    \caption{The results of the ``count\_primes" benchmarks across computers. Each line is the ``normalized" mean benchmark result in cycles per benchmark across 800 repetitions with one standard deviation either side of the mean shaded in.}
-    \label{fig:count_primes_normalized}
-\end{figure}
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.8\textwidth]{figures/final/all_to_all_scaled.pdf}
-    \caption{The scaled benchmark results for ``all\_to\_all" across computers.}
-    \label{fig:all_to_all_scaled}
-\end{figure}
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.8\textwidth]{figures/final/count_primes_scaled.pdf}
-    \caption{The scaled benchmark results for ``count\_primes" across computers.}
-    \label{fig:count_primes_scaled}
-\end{figure}
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.8\textwidth]{figures/final/correlation.pdf}
+    \includegraphics[width=0.6\textwidth]{figures/final/correlation.pdf}
     \caption{A correlation plot, showing the relationship between the clock speed of a cpu and how long each benchmark takes to run across the various sizes of benchmark. }
     \label{fig:correlation}
 \end{figure}
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.8\textwidth]{figures/final/xcorr.png}
+    \includegraphics[width=0.6\textwidth]{figures/final/xcorr.png}
     \caption{A cross correlation plot for the variables in our benchmarks. }
     \label{fig:xcorrelation}
 \end{figure}

@@ -73,14 +73,6 @@ Yucca & Intel(R) Core(TM) i9-10885H & 16 & 8 & 2400 \\
 \section{Results}
 \todoChris{}
 
-We ran the ``all\_to\_all" and ``count\_primes" benchmarks for each of the computers. Each benchmark repeats 1000 times consecutively, which we time and divide by 1000 to get the time for one benchmark iteration. We repeat this process 800 times. For Figure \ref{fig:direct} and , each line corresponds to the mean across the 800 runs with the shaded area corresponding to one standard deviation either side of the mean. Figure \ref{fig:direct} shows the results of the benchmarks using the timings directly. 
-
-For Figure \ref{fig:normalized}, we attempt to ``normalize" the results by multiplying each benchmark timing (seconds per benchmark) by the computer's clock speed (cycles per second) to get the timings in cycles per benchmark. 
-
-In Figure \ref{fig:scaled}, we compare each computer's performance using a scaled metric - we multiply each benchmark time by the number of processes used and divide by the total number of cpu cores on the computer. 
-
-Figure \ref{fig:correlation} shows the correlation between cpu clock speed and the seconds per benchmark across the different sizes of benchmark runs. Figure \ref{fig:xcorrelation} shows the cross correlation for different variables in the benchmark runs.
-
 \begin{figure}[h]
     \centering
     \begin{subfigure}[b]{0.49\textwidth}
@@ -101,7 +93,11 @@ Figure \ref{fig:correlation} shows the correlation between cpu clock speed and t
     \label{fig:direct}
 \end{figure}
 
-\begin{figure}[h]
+We ran the ``all\_to\_all" and ``count\_primes" benchmarks for each of the computers. Each benchmark repeats 1000 times consecutively, which we time and divide by 1000 to get the time for one benchmark iteration. We repeat this process 800 times. For Figure \ref{fig:direct} and Figure \ref{fig:normalized}, each line corresponds to the mean across the 800 runs with the shaded area corresponding to one standard deviation either side of the mean.
+
+Figure \ref{fig:direct} shows the results of the benchmarks using the timings directly. We expected the performance of commodity computers to be better than that of the supercomputers, since supercomputers are optimized for networking performance, while commodity computers are optimized to be used without networking. However, the results in Figure \ref{fig:direct} show that the benchmark results for the supercomputers - hopper, xena, and wheeler, fall in the middle of the benchmark results for the commodity computers. This suggests that being part of a supercomputer has little bearing on the performance for our benchmarks.
+
+\begin{figure}[h!]
     \centering
     \begin{subfigure}[b]{0.49\textwidth}
          \centering
@@ -120,6 +116,17 @@ Figure \ref{fig:correlation} shows the correlation between cpu clock speed and t
     \caption{The benchmark results across computers. Each line is the ``normalized" mean benchmark result in cycles per benchmark across 800 repetitions with one standard deviation either side of the mean shaded in. The red x's denote we ran using more tasks than the number of CPU cores available. }
     \label{fig:normalized}
 \end{figure}
+
+We then attempt to ``normalize" the results by multiplying each benchmark timing (seconds per benchmark) by the computer's clock speed (cycles per second) to get the timings in cycles per benchmark. We hypothesized that this would exaggerate any differences between the computers that was not due to variations in clock speed. Figure \ref{fig:normalized} shows the results of this experiment. We observe that the ``normalized" performance is nearly identical to the ``un-normalized" performance. This suggests that either clock speed did not play a significant role in the benchmark performance or that our normalization technique does not accurately account for the variations in performance due to clock speed.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.6\textwidth]{figures/final/correlation.pdf}
+    \caption{A correlation plot, showing the relationship between the clock speed of a cpu and how long each benchmark takes to run across the various sizes of benchmark. }
+    \label{fig:correlation}
+\end{figure}
+
+To further investigate the role of clock speed in our benchmark performances, we examined the correlation between clock speed and benchmark timings for different scale runs, shown in Figure \ref{fig:correlation}. What we see is for a fixed number of processes, the clock speed has little influence on the benchmark performance. The only notable exception is given by Sahu, with a clock speed of 2.0 GHz. We guess this is because Sahu has 128 CPU cores, so it is better suited to handle the larger-scale benchmarks.
 
 \begin{figure}[h]
     \centering
@@ -141,20 +148,19 @@ Figure \ref{fig:correlation} shows the correlation between cpu clock speed and t
     \label{fig:scaled}
 \end{figure}
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.6\textwidth]{figures/final/correlation.pdf}
-    \caption{A correlation plot, showing the relationship between the clock speed of a cpu and how long each benchmark takes to run across the various sizes of benchmark. }
-    \label{fig:correlation}
-\end{figure}
+Next, we make a ``scaled" comparison between the computers. To do this, we multiply each benchmark time by the number of processes used and divide by the total number of cpu cores on the computer. This gives us a distribution of results for each computer in terms of the percentage of cores used. We see that the supercomputers and commodity computers fall within the same ranges, except for Hopper and Sahu. We believe Sahu and Hopper stand out because they have significantly more cores than the other machines. Sahu has 128 cores and Hopper has 64 cores, while the next highest number of cores is 16.
 
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.6\textwidth]{figures/final/xcorr.png}
-    \caption{A cross correlation plot for the variables in our benchmarks. }
+    \caption{A cross correlation plot for the variables in our benchmarks using 4 processes. }
     \label{fig:xcorrelation}
 \end{figure}
 
+Finally, we observe the cross-correlation between the different variables in our experiments while using 4 processes, since this is the largest scale benchmark that each computer ran.
+Unsurprisingly, 
+
+Figure \ref{fig:correlation} shows the correlation between cpu clock speed and the seconds per benchmark across the different sizes of benchmark runs. Figure \ref{fig:xcorrelation} shows the cross correlation for different variables in the benchmark runs.
 
 \section{Conclusions}
 \todoChris{}

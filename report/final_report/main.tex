@@ -71,7 +71,6 @@ Yucca & Intel(R) Core(TM) i9-10885H & 16 & 8 & 2400 \\
 \end{table}
 
 \section{Results}
-\todoChris{}
 
 \begin{figure}[h]
     \centering
@@ -148,22 +147,45 @@ To further investigate the role of clock speed in our benchmark performances, we
     \label{fig:scaled}
 \end{figure}
 
-Next, we make a ``scaled" comparison between the computers. To do this, we multiply each benchmark time by the number of processes used and divide by the total number of cpu cores on the computer. This gives us a distribution of results for each computer in terms of the percentage of cores used. We see that the supercomputers and commodity computers fall within the same ranges, except for Hopper and Sahu. We believe Sahu and Hopper stand out because they have significantly more cores than the other machines. Sahu has 128 cores and Hopper has 64 cores, while the next highest number of cores is 16.
+Next, we make a ``scaled" comparison between the computers, shown in Figure \ref{fig:scaled}. To do this, we multiply each benchmark time by the number of processes used and divide by the total number of cpu cores on the computer. This gives us a distribution of results for each computer in terms of the percentage of cores used. We see that the supercomputers and commodity computers fall within the same ranges, except for Hopper and Sahu. We believe Sahu and Hopper stand out because they have significantly more cores than the other machines. Sahu has 128 cores and Hopper has 64 cores, while the next highest number of cores is 16.
+
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.6\textwidth]{figures/final/xcorr.png}
-    \caption{A cross correlation plot for the variables in our benchmarks using 4 processes. }
+    \begin{subfigure}[b]{0.49\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{figures/final/xcorr_all_to_all.png}
+         \caption{``all\_to\_all"}
+         \label{fig:all_to_all}
+     \end{subfigure}
+     \hfill
+     \begin{subfigure}[b]{0.49\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{figures/final/xcorr_count_primes.png}
+         \caption{``count\_primes"}
+         \label{fig:normalized}
+     \end{subfigure}
+     \hfill
+    \caption{ A cross correlation plot for the variables in our benchmarks using 4 processes. }
     \label{fig:xcorrelation}
 \end{figure}
 
-Finally, we observe the cross-correlation between the different variables in our experiments while using 4 processes, since this is the largest scale benchmark that each computer ran.
-Unsurprisingly, 
 
-Figure \ref{fig:correlation} shows the correlation between cpu clock speed and the seconds per benchmark across the different sizes of benchmark runs. Figure \ref{fig:xcorrelation} shows the cross correlation for different variables in the benchmark runs.
+Finally, we observe the cross-correlation between the different variables in our experiments while using 4 processes, since this is the largest scale for the benchmarks that every computer ran. This is shown in Figure \ref{fig:xcorrelation}.
+Unsurprisingly, for ``all\_to\_all", the direct times (avg\_time), normalized time (norm), and the scaled timings (scaled) are all correlated. Also unsurprisingly, the scaled times and number of cores are correlated, since we use the number of cores to calculate the scaled timings.
+
+The same applies to ``count\_primes", however, the scaled timings are no longer correlated with the other timings. This may be because the direct timings span only three orders of magnitude, $10^{-4}$ to $10^{-1}$, whereas the results for ``all\_to\_all" span from $10^{-7}$ to $10^{-2}$, so the scaling with number of processors scales the timings into too tight of a range to be significant in the cross-correlation.
+
+The cross-correlation plots also reveal a trend in the computers we selected for the experiments. The number of cores per node and the clock rate of the CPUs are negatively correlated, which suggests budgeting compromises while buying CPUs for a system.
+
 
 \section{Conclusions}
-\todoChris{}
+
+In this project, we explored the notion that the computers found in HPC centers are significantly more powerful than commodity computers. We ran two benchmarks across commodity computers and single nodes of supercomputers: a low-compute and high-communication benchmark, and a low-network and high-compute benchmark.
+
+We found that when running on a single-node, the supercomputers performed within the range of performance from commodity computers. The scale of the benchmarks was the most significant predictor of benchmark timings, while the clock speed showed almost no effect on the benchmark performance, all clock speeds falling within the range of 2.0 GHz to 3.6 GHz. For our benchmarks, this may not be a meaningful range of clock speeds.
+
+Our results suggest that under our benchmarks, a single node on a supercomputer is not significantly different from a commodity computer.
 
 \section{Future Work}
 Future research goals will address complexities that were not covered in this project. A key area of focus will be on testing benchmarks that offer a more balanced mix of communication and computation, which will enable a more comprehensive understanding of how different computing architectures handle diverse workloads. Additionally, comparing processors with nearly identical specifications from various manufacturers, such as AMD, Intel, and IBM, will provide valuable insights into the subtleties of their performance characteristics. Another area of interest includes conducting tests to analyze communication speeds over the network, specifically by running benchmarks with one process per node. This approach will assess the efficiency of data transfer processes in different computing environments. Pursuing these areas of research will enhance and expand upon our current findings.

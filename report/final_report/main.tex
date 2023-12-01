@@ -118,12 +118,12 @@ We then attempt to ``normalize" the results by multiplying each benchmark timing
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.6\textwidth]{figures/final/correlation.pdf}
+    \includegraphics[width=0.8\textwidth]{figures/final/correlation.pdf}
     \caption{A correlation plot, showing the relationship between the clock speed of a cpu and how long each benchmark takes to run across the various sizes of benchmark. }
     \label{fig:correlation}
 \end{figure}
 
-To further investigate the role of clock speed in our benchmark performances, we examined the correlation between clock speed and benchmark timings for our benchmarks, shown in Figure \ref{fig:correlation}. What we see is for a fixed number of processes, the clock speed has little influence on the benchmark performance. The only notable exception is given by Sahu, with a clock speed of 2.0 GHz. We hypothesize this is because Sahu has 128 CPU cores, so it is better suited to handle the larger-scale benchmarks.
+To further investigate the role of clock speed in our benchmark performances, we examined the correlation between clock speed and benchmark timings for our benchmarks, shown in Figure \ref{fig:correlation}. What we see is for a fixed number of processes, the clock speed has little influence on the benchmark performance. The only notable exceptions are given by Sahu, with a clock speed of 2.0 GHz, and Hopper, with a clock speed of 2.9 GHz. We hypothesize this is because Sahu has 128 CPU cores and Hopper has 64 CPU cores, so they are better suited to handle the larger-scale benchmarks.
 
 \begin{figure}[h!]
     \centering
@@ -138,7 +138,7 @@ To further investigate the role of clock speed in our benchmark performances, we
          \centering
          \includegraphics[width=\textwidth]{figures/final/count_primes_scaled.pdf}
          \caption{The results of ``count\_primes"}
-         \label{fig:normalized}
+         \label{fig:asdf}
      \end{subfigure}
      \hfill
     \caption{The ``scaled" mean benchmark results. }
@@ -161,7 +161,7 @@ Next, we make a ``scaled" comparison between the computers, shown in Figure \ref
          \centering
          \includegraphics[width=\textwidth]{figures/final/xcorr_count_primes.png}
          \caption{``count\_primes"}
-         \label{fig:normalized}
+         \label{fig:asdf}
      \end{subfigure}
      \hfill
     \caption{ A cross correlation plot for the variables in our benchmarks using 4 processes. }
@@ -181,7 +181,7 @@ The cross-correlation plots also reveal a trend in the computers we selected for
 
 In this project, we explored the notion that the computers found in HPC centers are significantly more powerful than commodity computers. We ran two benchmarks across commodity computers and single nodes of supercomputers: a low-compute and high-communication benchmark, and a low-network and high-compute benchmark.
 
-We found that when running on a single-node, the supercomputers performed within the range of performance from commodity computers. The scale of the benchmarks was the most significant predictor of benchmark timings, while the clock speed showed almost no effect on the benchmark performance, all clock speeds falling within the range of 2.0 GHz to 3.6 GHz. For our benchmarks, this may not be a meaningful range of clock speeds.
+We found that when running on a single-node, the supercomputers performed within the range of performance from commodity computers. The scale of the benchmarks was the most significant predictor of benchmark timings, while the clock speed showed almost no effect on the benchmark performance, all clock speeds falling within the range of 2.0 GHz to 3.6 GHz. For our benchmarks, this may not be a meaningful range.
 
 Our results suggest that under our benchmarks, a single node on a supercomputer is not significantly different from a commodity computer.
 
